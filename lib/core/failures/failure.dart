@@ -1,5 +1,6 @@
+// lib/core/error/failure.dart
 
-
+/// Base class for all Failures
 abstract class Failure {
   final String message;
 
@@ -14,19 +15,22 @@ abstract class Failure {
 
   @override
   int get hashCode => message.hashCode;
+
+  @override
+  String toString() => '$runtimeType: $message';
 }
 
-/// For database errors (e.g., Hive read/write failure)
+/// Database-related failure (e.g., Hive read/write errors)
 class DatabaseFailure extends Failure {
   const DatabaseFailure(String message) : super(message);
 }
 
-/// For when requested data does not exist
+/// Failure when requested data is not found
 class NotFoundFailure extends Failure {
   const NotFoundFailure(String message) : super(message);
 }
 
-/// For anything unexpected
+/// Generic unexpected failure
 class UnknownFailure extends Failure {
   const UnknownFailure(String message) : super(message);
 }

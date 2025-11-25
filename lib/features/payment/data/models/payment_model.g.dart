@@ -22,13 +22,14 @@ class PaymentModelAdapter extends TypeAdapter<PaymentModel> {
       amount: fields[2] as double,
       date: fields[3] as DateTime,
       month: fields[4] as String,
+      isPaid: fields[5] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, PaymentModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class PaymentModelAdapter extends TypeAdapter<PaymentModel> {
       ..writeByte(3)
       ..write(obj.date)
       ..writeByte(4)
-      ..write(obj.month);
+      ..write(obj.month)
+      ..writeByte(5)
+      ..write(obj.isPaid);
   }
 
   @override

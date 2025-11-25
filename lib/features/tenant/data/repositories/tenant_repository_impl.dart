@@ -15,7 +15,7 @@ class TenantRepositoryImpl implements TenantRepository {
       await dataSource.addTenant(tenant);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to add tenant: $e'));
+      return Left(UnknownFailure('Failed to add tenant: $e'));
     }
   }
 
@@ -25,7 +25,7 @@ class TenantRepositoryImpl implements TenantRepository {
       await dataSource.updateTenant(tenant);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to update tenant: $e'));
+      return Left(UnknownFailure('Failed to update tenant: $e'));
     }
   }
 
@@ -35,7 +35,7 @@ class TenantRepositoryImpl implements TenantRepository {
       await dataSource.deleteTenant(tenantId);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to delete tenant: $e'));
+      return Left(UnknownFailure('Failed to delete tenant: $e'));
     }
   }
 
@@ -45,7 +45,7 @@ class TenantRepositoryImpl implements TenantRepository {
       final tenants = await dataSource.getAllTenants();
       return Right(tenants);
     } catch (e) {
-      return Left(Failure('Failed to fetch tenants: $e'));
+      return Left(UnknownFailure('Failed to fetch tenants: $e'));
     }
   }
 
@@ -55,7 +55,7 @@ class TenantRepositoryImpl implements TenantRepository {
       final tenant = await dataSource.getTenantById(tenantId);
       return Right(tenant);
     } catch (e) {
-      return Left(Failure('Failed to fetch tenant: $e'));
+      return Left(UnknownFailure('Failed to fetch tenant: $e'));
     }
   }
 }

@@ -15,7 +15,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       await dataSource.addPayment(payment);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to add payment: $e'));
+      return Left(UnknownFailure('Failed to add payment: $e'));
     }
   }
 
@@ -25,7 +25,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       await dataSource.updatePayment(payment);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to update payment: $e'));
+      return Left(UnknownFailure('Failed to update payment: $e'));
     }
   }
 
@@ -35,7 +35,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       await dataSource.deletePayment(paymentId);
       return const Right(null);
     } catch (e) {
-      return Left(Failure('Failed to delete payment: $e'));
+      return Left(UnknownFailure('Failed to delete payment: $e'));
     }
   }
 
@@ -45,7 +45,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       final list = await dataSource.getPaymentsByTenant(tenantId);
       return Right(list);
     } catch (e) {
-      return Left(Failure('Failed to fetch payments: $e'));
+      return Left(UnknownFailure('Failed to fetch payments: $e'));
     }
   }
 
@@ -55,7 +55,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       final payment = await dataSource.getPaymentById(paymentId);
       return Right(payment);
     } catch (e) {
-      return Left(Failure('Failed to fetch payment: $e'));
+      return Left(UnknownFailure('Failed to fetch payment: $e'));
     }
   }
 }
