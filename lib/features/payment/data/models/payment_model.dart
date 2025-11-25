@@ -8,16 +8,19 @@ class PaymentModel extends HiveObject {
   final String id;
 
   @HiveField(1)
-  final String tenantId; // Link to tenant
+  final String tenantId;
 
   @HiveField(2)
   final double amount;
 
   @HiveField(3)
-  final DateTime date; // Payment date
+  final DateTime date;
 
   @HiveField(4)
-  final String month; // Month payment is for, e.g., "2025-11"
+  final String month;
+
+  @HiveField(5)
+  bool isPaid;
 
   PaymentModel({
     required this.id,
@@ -25,6 +28,7 @@ class PaymentModel extends HiveObject {
     required this.amount,
     required this.date,
     required this.month,
+    this.isPaid = false,
   });
 
   @override
@@ -41,4 +45,6 @@ class PaymentModel extends HiveObject {
   @override
   int get hashCode =>
       id.hashCode ^ tenantId.hashCode ^ amount.hashCode ^ date.hashCode ^ month.hashCode;
+
+  DateTime get dueDate => date;
 }
