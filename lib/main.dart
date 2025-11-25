@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'hive_adapters.dart';
 import '/shared/themes/theme.dart';
 import '/features/tenant/data/models/tenant_model.dart';
