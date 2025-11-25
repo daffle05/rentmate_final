@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 import '../../../shared/themes/theme.dart';
 import '/features/tenant/data/models/tenant_model.dart';
 import '/presentation/providers/tenant_providers.dart';
@@ -15,8 +16,8 @@ ConsumerState<AddTenantScreen> createState() => _AddTenantScreenState();
 }
 
 class _AddTenantScreenState extends ConsumerState<AddTenantScreen> {
-final _formKey = GlobalKey<FormBuilderState>();
-final _uuid = const Uuid();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  final Uuid _uuid = Uuid();
 
 @override
 Widget build(BuildContext context) {
@@ -84,7 +85,7 @@ return Scaffold(
 
                 await tenantController.addTenant(tenant);
 
-                if (!mounted) return;
+                if (!context.mounted) return;
                 Navigator.of(context).pop();
               }
             },
@@ -99,10 +100,4 @@ return Scaffold(
 }
 }
 
-extension on Uuid {
-  v4() {}
-}
-
-class Uuid {
-  const Uuid();
-}
+// Using `package:uuid` for unique ids; no local stub needed.
