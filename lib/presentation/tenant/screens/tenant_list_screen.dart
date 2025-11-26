@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/themes/theme.dart';
-import '/presentation/providers/tenant_providers.dart'; // <-- import the provider
+import '/presentation/providers/tenant_providers.dart';
 import 'add_tenant_screen.dart';
 import '../widgets/tenant_card.dart';
 

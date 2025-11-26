@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:hive/hive.dart';
-import '/features/tenant/data/models/tenant_model.dart';
-import '/features/payment/data/models/payment_model.dart';
+import '/presentation/providers/tenant_providers.dart';
 import '/features/dashboard/data/data_sources/dashboard_data_source.dart';
 import '/features/dashboard/data/data_sources/dashboard_data_source_impl.dart';
 import '/features/dashboard/data/repositories/dashboard_repository.dart';
@@ -11,9 +9,9 @@ import '../controllers/dashboard_controller.dart';
 import '../state/dashboard_state.dart';
 
 
-/// 1️⃣ Hive Boxes (provide them from your main setup)
-final tenantBoxProvider = Provider<Box<TenantModel>>((ref) => throw UnimplementedError());
-final paymentBoxProvider = Provider<Box<PaymentModel>>((ref) => throw UnimplementedError());
+/// 1️⃣ Hive Boxes (use shared providers)
+// `tenantBoxProvider` and `paymentBoxProvider` are provided from
+// `lib/presentation/providers/tenant_providers.dart`.
 
 /// 2️⃣ Data Source Provider
 final dashboardDataSourceProvider = Provider<DashboardDataSource>((ref) {

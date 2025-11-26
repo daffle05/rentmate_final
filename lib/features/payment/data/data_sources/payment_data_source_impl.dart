@@ -31,4 +31,9 @@ class PaymentDataSourceImpl implements PaymentDataSource {
   Future<PaymentModel?> getPaymentById(String paymentId) async {
     return paymentBox.get(paymentId);
   }
+
+  @override
+  Future<List<PaymentModel>> getAllPayments() async {
+    return paymentBox.values.toList();
+  }
 }

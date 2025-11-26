@@ -21,7 +21,8 @@ class _AddPaymentScreenState extends ConsumerState<AddPaymentScreen> {
   final dateController = TextEditingController();
   final descriptionController = TextEditingController();
   DateTime? selectedDate;
-  String? selectedMonth;
+  TimeOfDay? selectedTime;
+  final timeController = TextEditingController();
 
   @override
   void dispose() {
@@ -73,25 +74,21 @@ class _AddPaymentScreenState extends ConsumerState<AddPaymentScreen> {
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: TextEditingController(
-                  text: selectedMonth ?? '',
-                ),
+                controller: timeController,
                 readOnly: true,
                 decoration: const InputDecoration(
-                  labelText: 'Month (YYYY-MM)',
+                  labelText: 'Time (HH:mm)',
                   border: OutlineInputBorder(),
                 ),
                 onTap: () async {
-                  final picked = await showDatePicker(
+                  final picked = await showTimePicker(
                     context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2020),
-                    lastDate: DateTime(2101),
+                    initialTime: TimeOfDay.now(),
                   );
                   if (picked != null) {
-                    final month = '${picked.year}-${picked.month.toString().padLeft(2, '0')}';
                     setState(() {
-                      selectedMonth = month;
+                      selectedTime = picked;
+                      timeController.text = picked.format(context);
                     });
                   }
                 },
@@ -108,7 +105,7 @@ class _AddPaymentScreenState extends ConsumerState<AddPaymentScreen> {
                 onPressed: () async {
                   if (amountController.text.isEmpty ||
                       selectedDate == null ||
-                      selectedMonth == null) {
+                      selectedTime == null) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Please fill in all required fields.'),
@@ -122,7 +119,7 @@ class _AddPaymentScreenState extends ConsumerState<AddPaymentScreen> {
                     tenantId: widget.tenantId,
                     amount: double.parse(amountController.text),
                     date: selectedDate!,
-                    month: selectedMonth!,
+                    month: selectedTime != null ? selectedTime!.format(context) : '',
                   );
 
                   final paymentController =

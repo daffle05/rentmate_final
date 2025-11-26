@@ -5,7 +5,7 @@ import '../providers/dashboard_providers.dart';
 import '../../../tenant/data/models/tenant_model.dart';
 
 class DashboardScreen extends ConsumerStatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   ConsumerState<DashboardScreen> createState() => _DashboardScreenState();
@@ -125,7 +125,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: tenants.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
+      separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         final tenant = tenants[index];
         return Card(
@@ -158,11 +158,8 @@ class AppColors {
 
 
 class AppTextStyles {
-  static var chipUnselected;
-  
-  static var chipSelected;
-  
-  static var subtitle;
-  
-  static var headline;
+  static const TextStyle chipUnselected = TextStyle(color: Colors.black87);
+  static const TextStyle chipSelected = TextStyle(color: Colors.white);
+  static const TextStyle subtitle = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
+  static const TextStyle headline = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 }

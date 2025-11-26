@@ -8,4 +8,5 @@ abstract class PaymentRepository {
   Future<Either<Failure, void>> deletePayment(String paymentId);
   Future<Either<Failure, List<PaymentModel>>> getPaymentsByTenant(String tenantId);
   Future<Either<Failure, PaymentModel?>> getPaymentById(String paymentId);
+  Future<Either<Failure, List<PaymentModel>>> getAllPayments();
 }
