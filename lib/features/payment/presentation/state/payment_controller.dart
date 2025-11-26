@@ -8,6 +8,26 @@ class PaymentController extends StateNotifier<PaymentState> {
 
   PaymentController(this.repository) : super(PaymentState.initial());
 
+  Future<void> loadAllPayments() async {
+    state = state.copyWith(isLoading: true);
+    final result = await repository.getAllPayments();
+    result.fold(
+      (failure) {
+        state = state.copyWith(
+          isLoading: false,
+          errorMessage: failure.message,
+        );
+      },
+      (payments) {
+        state = state.copyWith(
+          payments: payments,
+          isLoading: false,
+          errorMessage: null,
+        );
+      },
+    );
+  }
+
   Future<void> loadPaymentsByTenant(String tenantId) async {
     state = state.copyWith(isLoading: true);
     final result = await repository.getPaymentsByTenant(tenantId);

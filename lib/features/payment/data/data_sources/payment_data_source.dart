@@ -6,6 +6,7 @@ abstract class PaymentDataSource {
   Future<void> deletePayment(String paymentId);
   Future<List<PaymentModel>> getPaymentsByTenant(String tenantId);
   Future<PaymentModel?> getPaymentById(String paymentId);
+  Future<List<PaymentModel>> getAllPayments();
 }
 
 // Concrete implementation
@@ -33,5 +34,10 @@ class PaymentDataSourceImpl implements PaymentDataSource {
   @override
   Future<PaymentModel?> getPaymentById(String paymentId) async {
     return null; // implement logic
+  }
+
+  @override
+  Future<List<PaymentModel>> getAllPayments() async {
+    return []; // implement logic
   }
 }

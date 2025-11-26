@@ -58,4 +58,14 @@ class PaymentRepositoryImpl implements PaymentRepository {
       return Left(UnknownFailure('Failed to fetch payment: $e'));
     }
   }
+
+  @override
+  Future<Either<Failure, List<PaymentModel>>> getAllPayments() async {
+    try {
+      final list = await dataSource.getAllPayments();
+      return Right(list);
+    } catch (e) {
+      return Left(UnknownFailure('Failed to fetch all payments: $e'));
+    }
+  }
 }

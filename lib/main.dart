@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rentmate_final/presentation/tenant/screens/tenant_list_screen.dart';
+import 'package:rentmate_final/presentation/root_navigation_screen.dart';
 import 'hive_adapters.dart';
 import '/shared/themes/theme.dart';
 import '/features/tenant/data/models/tenant_model.dart';
-import '/features/payment/data/models/payment_model.dart'; // Import PaymentModel
+import '/features/payment/data/models/payment_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RentMate',
       theme: AppTheme.lightTheme,
-      home: const TenantListScreen(), // Start with Tenant List
+      home: const RootNavigationScreen(),
     );
   }
 }
